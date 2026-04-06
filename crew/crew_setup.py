@@ -1,15 +1,6 @@
 """Crew Setup - Orchestrates agents and tasks for the study workflow."""
 
-import sys
-from pathlib import Path
-
-# Try to import from real crewai, fall back to stub if unavailable
-try:
-    from crewai import Crew, Process
-except ImportError:
-    # Use stub implementation for Python 3.14 compatibility
-    sys.path.insert(0, str(Path(__file__).parent.parent))
-    from crewai_stub import Crew, Process
+from crewai import Crew, Process
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))

@@ -1,35 +1,15 @@
-"""Quiz Task - Quiz Agent generates assessment questions."""
+from crewai import Task
 
-import sys
-from pathlib import Path
-
-# Try to import from real crewai, fall back to stub if unavailable
-try:
-    from crewai import Task
-except ImportError:
-    sys.path.insert(0, str(Path(__file__).parent.parent))
-    from crewai_stub import Task
-
-
-def create_quiz_task(agent, teaching_output):
-    """
-    Creates a quiz task for the quiz agent.
-    
-    Args:
-        agent: The quiz agent
-        teaching_output: The explanation from the teacher
-        
-    Returns:
-        Task: Configured quiz task
-    """
+def create_quiz_task(agent, topic):
     return Task(
         description=f"""
-Generate quiz questions about '{teaching_output}'.
+Create a quiz about '{topic}'.
 
-* Use real factual content
-* Avoid generic questions
-* Include correct answers
+- 3 MCQs
+- 2 short questions
+- Provide correct answers
+
+Questions must be based on real facts.
 """,
-        expected_output="Quiz with answers",
-        agent=agent,
+        agent=agent
     )

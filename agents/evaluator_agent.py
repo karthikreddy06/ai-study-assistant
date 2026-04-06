@@ -1,16 +1,8 @@
 """Evaluator Agent - Evaluates student answers and provides feedback."""
 
-import sys
-from pathlib import Path
 from os import getenv
 
-# Try to import from real crewai, fall back to stub if unavailable
-try:
-    from crewai import Agent
-    from crewai import LLM
-except ImportError:
-    sys.path.insert(0, str(Path(__file__).parent.parent))
-    from crewai_stub import Agent, LLM
+from crewai import Agent, LLM
 
 
 def create_evaluator_agent():
